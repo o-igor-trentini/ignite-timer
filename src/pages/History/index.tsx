@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { HistoryContainer, HistoryList } from './styles'
+import { HistoryContainer, HistoryList, Status } from './styles'
 
 export const History: FC = () => {
   return (
@@ -24,7 +24,9 @@ export const History: FC = () => {
                   <td>Tarefa</td>
                   <td>20 minutos</td>
                   <td>Há 2 meses</td>
-                  <td>Concluído</td>
+                  <td>
+                    <Status variant="finished">Concluído</Status>
+                  </td>
                 </tr>,
               )
               .map((item) => item)}

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { defaultTheme } from '../../styles/themes/default'
 
 export const HistoryContainer = styled.main`
   flex: 1;
@@ -57,7 +58,7 @@ export const HistoryList = styled.div`
       background-color: ${({ theme }) => theme['gray-700']};
 
       &:first-child {
-        width: 50%;
+        width: 50
         padding-left: 1.5rem;
       }
 
@@ -65,5 +66,31 @@ export const HistoryList = styled.div`
         padding-right: 1.5rem;
       }
     }
+  }
+`
+
+const statusVariantColors = {
+  interrupt: defaultTheme['red-500'],
+  inProgress: defaultTheme['yellow-500'],
+  finished: defaultTheme['green-500'],
+}
+
+interface StatusProps {
+  variant: keyof typeof statusVariantColors
+}
+
+export const Status = styled.span<StatusProps>`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::before {
+    content: '';
+
+    width: 0.5rem;
+    height: 0.5rem;
+
+    border-radius: 50%;
+    background: ${({ variant }) => statusVariantColors[variant]};
   }
 `

@@ -13,15 +13,21 @@ import {
   TaskInput,
 } from './styles'
 
-const minCycleValue = 5
-const maxCycleValue = 240
+const minCycleValue = import.meta.env.VITE_MIN_CYCLE_VALUE
+const maxCycleValue = import.meta.env.VITE_MAX_CYCLE_VALUE
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
   minutesAmount: zod
     .number()
-    .min(5, `O ciclo precisa ser de no mínimo ${minCycleValue} minutos`)
-    .max(240, `O ciclo precisa ser de no máximo ${maxCycleValue} minutos`),
+    .min(
+      minCycleValue,
+      `O ciclo precisa ser de no mínimo ${minCycleValue} minutos`,
+    )
+    .max(
+      maxCycleValue,
+      `O ciclo precisa ser de no máximo ${maxCycleValue} minutos`,
+    ),
 })
 
 type NewCycleForm = zod.infer<typeof newCycleFormValidationSchema>
@@ -41,6 +47,8 @@ export const Home: FC = () => {
     console.log('### form', data)
     reset()
   }
+
+  console.log(minCycleValue, maxCycleValue)
 
   return (
     <HomeContainer>

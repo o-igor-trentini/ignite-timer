@@ -8,9 +8,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      VITE_MIN_CYCLE_VALUE: ${{ secrets.VITE_MIN_CYCLE_VALUE }}
-      VITE_MAX_CYCLE_VALUE: ${{ secrets.VITE_MAX_CYCLE_VALUE }}
 
     steps:
       - name: Checkout
@@ -24,11 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create environment file
+        run: echo -e "VITE_MIN_CYCLE_VALUE=$MinValue\nVITE_MAX_CYCLE_VALUE=$MaxValue" > .env
+        env:
+          MinValue: ${{ secrets.VITE_MIN_CYCLE_VALUE }}
+          MaxValue: ${{ secrets.VITE_MAX_CYCLE_VALUE }}
+
       - name: Build
         run: npm run build
-        env:
-          VITE_MIN_CYCLE_VALUE: ${{ secrets.VITE_MIN_CYCLE_VALUE }}
-          VITE_MAX_CYCLE_VALUE: ${{ secrets.VITE_MAX_CYCLE_VALUE }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

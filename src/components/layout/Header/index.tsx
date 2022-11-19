@@ -6,16 +6,18 @@ import IgniteLogo from '../../../assets/ignite-logo.svg'
 import { NavLink } from 'react-router-dom'
 
 export const Header: FC = () => {
+  const baseUrl = import.meta.env.BASE_URL
+
   return (
     <HeaderContainer>
       <img src={IgniteLogo} alt="" />
 
       <nav>
-        <NavLink to="/" title="Timer">
+        <NavLink to={baseUrl} title="Timer">
           <Timer size={24} />
         </NavLink>
 
-        <NavLink to="/history" title="Histórico">
+        <NavLink to={`${baseUrl}history`} title="Histórico">
           <Scroll size={24} />
         </NavLink>
       </nav>

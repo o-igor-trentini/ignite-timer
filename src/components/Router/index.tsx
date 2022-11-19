@@ -5,9 +5,11 @@ import { Home } from '../../pages/Home'
 import { Default } from '../layout/Default'
 
 export const Router: FC = () => {
+  const baseUrl = import.meta.env.BASE_URL
+
   return (
     <Routes>
-      <Route path="/" element={<Default />}>
+      <Route path={baseUrl} element={<Default />}>
         <Route index element={<Home />} />
 
         <Route path="history" element={<History />} />

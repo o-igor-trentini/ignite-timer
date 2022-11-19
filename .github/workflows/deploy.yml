@@ -25,7 +25,7 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        run: npm run build
+        run: npm run deploy
         env:
           GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
           VITE_MIN_CYCLE_VALUE: ${{ secrets.VITE_MIN_CYCLE_VALUE }}

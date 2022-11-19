@@ -48,8 +48,6 @@ export const Home: FC = () => {
     reset()
   }
 
-  console.log(minCycleValue, maxCycleValue)
-
   return (
     <HomeContainer>
       <form onSubmit={handleSubmit(onSubmitNewCycle)}>

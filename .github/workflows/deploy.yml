@@ -26,6 +26,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_MIN_CYCLE_VALUE: ${{ secrets.VITE_MIN_CYCLE_VALUE }}
+          VITE_MAX_CYCLE_VALUE: ${{ secrets.VITE_MAX_CYCLE_VALUE }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

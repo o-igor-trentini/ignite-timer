@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Create environment file
-        run: echo -e "VITE_MIN_CYCLE_VALUE=$MinValue\nVITE_MAX_CYCLE_VALUE=$MaxValue" > .env
+        run: echo -e "VITE_MIN_CYCLE_VALUE=$MinValue\nVITE_MAX_CYCLE_VALUE=$MaxValue" > .env.production
         env:
           MinValue: ${{ secrets.VITE_MIN_CYCLE_VALUE }}
           MaxValue: ${{ secrets.VITE_MAX_CYCLE_VALUE }}

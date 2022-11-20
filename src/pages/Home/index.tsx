@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { differenceInSeconds } from 'date-fns'
-import { Play } from 'phosphor-react'
+import { HandPalm, Play } from 'phosphor-react'
 import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
@@ -11,10 +11,11 @@ import {
   MinutesAmountInput,
   Separator,
   StartCountDownButton,
+  StopCountDownButton,
   TaskInput,
 } from './styles'
 
-const minCycleValue = import.meta.env.VITE_MIN_CYCLE_VALUE
+const minCycleValue = 1 ?? import.meta.env.VITE_MIN_CYCLE_VALUE
 const maxCycleValue = import.meta.env.VITE_MAX_CYCLE_VALUE
 
 const newCycleFormValidationSchema = zod.object({
@@ -38,6 +39,8 @@ interface Cycle {
   task: string
   minutesAmount: number
   startDate: Date
+  interruptedDate?: Date
+  finishedDate?: Date
 }
 
 export const Home: FC = () => {
@@ -80,17 +83,48 @@ export const Home: FC = () => {
     reset()
   }
 
+  const handleInterruptCycle = () => {
+    setCycles((state) =>
+      state.map((item) =>
+        item.id === activeCycleId
+          ? ({ ...item, interruptedDate: new Date() } as Cycle)
+          : item,
+      ),
+    )
+
+    setActiveCycleId(null)
+  }
+
   useEffect(() => {
     if (!activeCycle) return undefined
 
     const interval = setInterval(() => {
-      setAmountSecondsPassed(
-        differenceInSeconds(new Date(), activeCycle.startDate),
+      const diffInSeconds = differenceInSeconds(
+        new Date(),
+        activeCycle.startDate,
       )
+
+      if (diffInSeconds >= totalSeconds) {
+        setCycles((state) =>
+          state.map((item) =>
+            item.id === activeCycleId
+              ? ({ ...item, finishedDate: new Date() } as Cycle)
+              : item,
+          ),
+        )
+
+        setAmountSecondsPassed(totalSeconds)
+
+        clearInterval(interval)
+
+        return
+      }
+
+      setAmountSecondsPassed(diffInSeconds)
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [activeCycle])
+  }, [activeCycle, totalSeconds])
 
   useEffect(() => {
     if (activeCycle) document.title = `${minutes}:${seconds}`
@@ -107,6 +141,7 @@ export const Home: FC = () => {
             type="text"
             placeholder="Dê um nome para o seu projeto"
             list="task-suggestions"
+            disabled={!!activeCycle}
             autoComplete="off"
             {...register('task')}
           />
@@ -124,6 +159,7 @@ export const Home: FC = () => {
             min={minCycleValue}
             max={maxCycleValue}
             step={minCycleValue}
+            disabled={!!activeCycle}
             autoComplete="off"
             {...register('minutesAmount', { valueAsNumber: true })}
           />
@@ -141,10 +177,17 @@ export const Home: FC = () => {
           <span>{seconds[1]}</span>
         </CountDownContainer>
 
-        <StartCountDownButton type="submit" disabled={isSubmitDisabled}>
-          <Play size={24} />
-          Começar
-        </StartCountDownButton>
+        {activeCycle ? (
+          <StopCountDownButton type="button" onClick={handleInterruptCycle}>
+            <HandPalm size={24} />
+            Interromper
+          </StopCountDownButton>
+        ) : (
+          <StartCountDownButton type="submit" disabled={isSubmitDisabled}>
+            <Play size={24} />
+            Começar
+          </StartCountDownButton>
+        )}
       </form>
     </HomeContainer>
   )

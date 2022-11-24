@@ -1,16 +1,27 @@
 import { differenceInSeconds } from 'date-fns'
-import { FC, useEffect, useState } from 'react'
-import { Cycle } from '../..'
+import { FC, useContext, useEffect, useState } from 'react'
+import { CycleContext } from '../..'
 import { CountDownContainer, Separator } from './styles'
 
 export const CountDown: FC = () => {
-  const [amountSecondsPassed, setAmountSecondsPassed] = useState<number>(0)
+  const {
+    activeCycle,
+    activeCycleId,
+    amountSecondsPassed,
+    markCurrentCycleAsFinished,
+    setSecondsPassed,
+  } = useContext(CycleContext)
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
   const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0
   const minutesAmount = Math.floor(currentSeconds / 60)
   const secondsAmount = currentSeconds % 60
   const minutes = String(minutesAmount).padStart(2, '0')
   const seconds = String(secondsAmount).padStart(2, '0')
+
+  useEffect(() => {
+    if (activeCycle) document.title = `${minutes}:${seconds}`
+    else document.title = 'Ignite Timer'
+  }, [activeCycle, minutes, seconds])
 
   useEffect(() => {
     if (!activeCycle) return undefined
@@ -22,26 +33,26 @@ export const CountDown: FC = () => {
       )
 
       if (diffInSeconds >= totalSeconds) {
-        setCycles((state) =>
-          state.map((item) =>
-            item.id === activeCycleId
-              ? ({ ...item, finishedDate: new Date() } as Cycle)
-              : item,
-          ),
-        )
+        markCurrentCycleAsFinished()
 
-        setAmountSecondsPassed(totalSeconds)
+        setSecondsPassed(totalSeconds)
 
         clearInterval(interval)
 
         return
       }
 
-      setAmountSecondsPassed(diffInSeconds)
+      setSecondsPassed(diffInSeconds)
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [activeCycle, totalSeconds])
+  }, [
+    activeCycle,
+    totalSeconds,
+    activeCycleId,
+    markCurrentCycleAsFinished,
+    setSecondsPassed,
+  ])
 
   return (
     <CountDownContainer>

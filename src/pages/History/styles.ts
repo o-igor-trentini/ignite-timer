@@ -58,7 +58,7 @@ export const HistoryList = styled.div`
       background-color: ${({ theme }) => theme['gray-700']};
 
       &:first-child {
-        width: 50
+        width: 50%;
         padding-left: 1.5rem;
       }
 

@@ -137,7 +137,7 @@ Error generating stack: `+o.message+`
       background-color: ${({theme:e})=>e["gray-700"]};
 
       &:first-child {
-        width: 50
+        width: 50%;
         padding-left: 1.5rem;
       }
 

@@ -4,7 +4,7 @@ import * as zod from 'zod'
 import { useFormContext } from 'react-hook-form'
 import { CycleContext } from '../../../../context/CyclesContext'
 
-export const minCycleValue = 1 ?? import.meta.env.VITE_MIN_CYCLE_VALUE
+export const minCycleValue = import.meta.env.VITE_MIN_CYCLE_VALUE
 export const maxCycleValue = import.meta.env.VITE_MAX_CYCLE_VALUE
 
 export const newCycleFormValidationSchema = zod.object({

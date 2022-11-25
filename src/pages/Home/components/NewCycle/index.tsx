@@ -1,8 +1,8 @@
 import { FC, useContext } from 'react'
 import { FormContainer, MinutesAmountInput, TaskInput } from './styles'
 import * as zod from 'zod'
-import { CycleContext } from '../..'
 import { useFormContext } from 'react-hook-form'
+import { CycleContext } from '../../../../context/CyclesContext'
 
 export const minCycleValue = 1 ?? import.meta.env.VITE_MIN_CYCLE_VALUE
 export const maxCycleValue = import.meta.env.VITE_MAX_CYCLE_VALUE

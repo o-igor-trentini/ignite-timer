@@ -16,15 +16,6 @@ import {
   StopCountDownButton,
 } from './styles'
 
-export interface Cycle {
-  id: string
-  task: string
-  minutesAmount: number
-  startDate: Date
-  interruptedDate?: Date
-  finishedDate?: Date
-}
-
 export const Home: FC = () => {
   const { activeCycle, createNewCycle, interruptCurrentCycle } =
     useContext(CycleContext)

@@ -30,7 +30,7 @@ export const BaseCountDownButton = styled.button`
 
   cursor: pointer;
 
-  color: ${({ theme }) => theme['gray-100']};
+  color: ${({ theme }) => theme.lightFontColor};
 
   &:disabled {
     opacity: 0.7;
@@ -40,7 +40,6 @@ export const BaseCountDownButton = styled.button`
 
 export const StartCountDownButton = styled(BaseCountDownButton)`
   background: ${({ theme }) => theme['green-500']};
-  color: ${({ theme }) => theme['gray-100']};
 
   &:not(:disabled):hover {
     background: ${({ theme }) => theme['green-700']};

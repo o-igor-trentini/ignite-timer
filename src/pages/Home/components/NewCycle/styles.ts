@@ -9,7 +9,8 @@ export const FormContainer = styled.div`
   align-items: center;
   gap: 0.5rem;
 
-  color: ${({ theme }) => theme['gray-100']};
+  color: ${({ theme }) =>
+    theme.type === 'dark' ? theme.lightFontColor : theme.darkFontColor};
   font-weight: bold;
   font-size: 1.125rem;
 `
@@ -25,7 +26,8 @@ const BaseInput = styled.input`
 
   font-weight: bold;
   font-size: 1.125rem;
-  color: ${({ theme }) => theme['gray-100']};
+  color: ${({ theme }) =>
+    theme.type === 'dark' ? theme.lightFontColor : theme.darkFontColor};
 
   &:focus,
   &:hover {

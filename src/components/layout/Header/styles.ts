@@ -17,7 +17,8 @@ export const HeaderContainer = styled.div`
       justify-content: center;
       align-items: center;
 
-      color: ${({ theme }) => theme['gray-100']};
+      color: ${({ theme }) =>
+        theme.type === 'dark' ? theme.lightFontColor : theme.darkFontColor};
 
       border-top: 3px solid transparent;
       border-bottom: 3px solid transparent;

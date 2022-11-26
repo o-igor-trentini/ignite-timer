@@ -8,9 +8,39 @@ export const HistoryContainer = styled.main`
 
   padding: 3.5rem;
 
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
   h1 {
     font-size: 1.5rem;
-    color: ${({ theme }) => theme['gray-100']};
+    color: ${({ theme }) =>
+      theme.type === 'dark' ? theme.lightFontColor : theme.darkFontColor};
+  }
+
+  div {
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      margin-top: 60px;
+      background: ${({ theme }) => theme.cardBackground};
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: ${({ theme }) => theme.globalBackground};
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: ${({ theme }) => theme['green-500']};
+    }
   }
 `
 
@@ -33,7 +63,7 @@ export const HistoryList = styled.div`
       text-align: left;
       font-size: 0.875rem;
       line-height: 1.6rem;
-      color: ${({ theme }) => theme['gray-100']};
+      color: ${({ theme }) => theme.lightFontColor};
 
       background-color: ${({ theme }) => theme['gray-600']};
 
@@ -48,14 +78,19 @@ export const HistoryList = styled.div`
       }
     }
 
+    tr {
+      color: ${({ theme }) =>
+        theme.type === 'dark' ? theme.lightFontColor : theme.darkFontColor};
+    }
+
     td {
       padding: 1rem;
 
       font-size: 0.875rem;
       line-height: 1.6rem;
 
-      border-top: 4px solid ${({ theme }) => theme['gray-800']};
-      background-color: ${({ theme }) => theme['gray-700']};
+      border-top: 4px solid ${({ theme }) => theme.cardBackground};
+      background-color: ${({ theme }) => theme.displayBackground};
 
       &:first-child {
         width: 50%;

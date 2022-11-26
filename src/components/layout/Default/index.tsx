@@ -3,10 +3,14 @@ import { Outlet } from 'react-router-dom'
 import { Header } from '../Header'
 import { LayoutContainer } from './styles'
 
-export const Default: FC = () => {
+interface DefaultProps {
+  switchTheme: () => void
+}
+
+export const Default: FC<DefaultProps> = ({ switchTheme }) => {
   return (
     <LayoutContainer>
-      <Header />
+      <Header switchTheme={switchTheme} />
 
       <Outlet />
     </LayoutContainer>

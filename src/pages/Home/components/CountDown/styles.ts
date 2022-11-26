@@ -7,12 +7,14 @@ export const CountDownContainer = styled.div`
   font-family: 'Roboto Mono', monospace;
   font-size: 10rem;
   line-height: 8rem;
-  color: ${({ theme }) => theme['gray-100']};
+  color: ${({ theme }) => theme.darkFontColor};
 
   span {
-    background: ${({ theme }) => theme['gray-700']};
+    background: ${({ theme }) => theme.displayBackground};
     padding: 2rem 1rem;
     border-radius: 8px;
+    color: ${({ theme }) =>
+      theme.type === 'dark' ? theme.lightFontColor : theme.darkFontColor};
   }
 `
 

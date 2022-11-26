@@ -1,14 +1,14 @@
 import { ThemeConfig } from '../../@types/styled'
 
-export const defaultTheme: ThemeConfig = {
-  type: 'dark',
+export const lightTheme: ThemeConfig = {
+  type: 'light',
 
-  globalBackground: '#121214', // gray-900
-  cardBackground: '#202024', // gray-800
-  displayBackground: '#29292E', // gray-700
+  globalBackground: '#C4C4CC', // gray-300
+  cardBackground: '#E1E1E6', // gray-100
+  displayBackground: '#C4C5C6',
 
   darkFontColor: '#29292E', // gray-700
-  lightFontColor: '#E1E1E6', // gray-100
+  lightFontColor: '#E1E1E6', // gray-700
 
   'gray-500': '#7C7C8A',
   'gray-600': '#323238',

@@ -1,13 +1,19 @@
+<img src="https://drive.google.com/uc?export=view&id=1I8Gil5iH_K_4CeHBAvK-JlmDxGOIN-he" alt="" width="158" height="58" align="right" />
+
 # Ignite Timer
 
-Ignite Timer é um projeto desenvolvido para explorar o roteamento e alguns conceitos importantes do [ReactJS][] como: ContextAPI, useReducer, entre outros.
+> Ignite Timer é um projeto desenvolvido para explorar o roteamento e alguns conceitos importantes do [ReactJS][] como: ContextAPI, useReducer, entre outros.
+> <br/><br/> O desenvolvimento da aplicação foi construido a partir da documentação que pode ser encontrada [aqui][].
 
 Este projeto é o segundo do módulo de ReactJS 2022, uma aplicação de pomodoro que conta com um contador principal e um histórico.
 
 Me veja em funcionamento [clicando aqui][] ***:)***
 
-## Tecnologias
+## Desenvolvimento
 
+### Construído com
+
+- ReactJS
 - Vite
 - Typescript
 - Styled Components
@@ -16,17 +22,25 @@ Me veja em funcionamento [clicando aqui][] ***:)***
 - Zod
 - Immer
 
-## Instalação
+## Instalando / Começando
 
-Use o [npm] para instalar as dependências:
+Clone este repositório com:
 
-```bash
+```shell
+git clone git@github.com:o-igor-trentini/ignite-timer.git
+```
+
+Use o [npm][] para instalar as dependências:
+
+```shell
 npm i
 ```
 
-## Design System
+E use o seguinte comando para iniciar o projeto em modo de desenvolvimento:
 
-O desenvolvimento da aplicação foi construido a partir da documentação que pode ser encontrada [aqui][].
+```shell
+npm run dev
+```
 
 ---
 

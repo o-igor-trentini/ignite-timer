@@ -1,5 +1,4 @@
 <img src="https://drive.google.com/uc?export=view&id=1I8Gil5iH_K_4CeHBAvK-JlmDxGOIN-he" alt="" width="58" height="58" align="right" />
-<img src="https://drive.google.com/uc?export=view&id=1I8Gil5iH_K_4CeHBAvK-JlmDxGOIN-he" alt="" width="58" height="58" align="right" style="margin-right: 12px" />
 
 # Ignite Timer
 
